@@ -11,7 +11,7 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(move || {
         App::new()
-            .data(rooms.clone())
+            .app_data(rooms.clone())
             .route("/ws/{room_id}/{password}", web::get().to(chat_route))
     })
     .bind("127.0.0.1:8080")?
