@@ -1,5 +1,4 @@
-use actix_web::{web, App, HttpRequest, HttpResponse, HttpServer};
-use actix_web_actors::ws;
+use actix_web::{web, App, HttpServer};
 use chatroom_example::{chat, chat_route};
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
