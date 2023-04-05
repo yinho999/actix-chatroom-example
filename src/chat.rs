@@ -29,8 +29,8 @@ impl Room {
 }
 
 pub struct WsChatSession {
-    room: Room,
-    addr: Option<Addr<Self>>,
+    pub room: Room,
+    pub addr: Option<Addr<Self>>,
 }
 
 impl WsChatSession {
@@ -101,5 +101,16 @@ impl Handler<WsMessage> for WsChatSession {
     type Result = ();
     fn handle(&mut self, msg: WsMessage, ctx: &mut Self::Context) {
         ctx.text(msg.0);
+    }
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_verify_password() {
+        let room = Room::new("test_room".to_string(), "password123".to_string());
+        assert!(room.verify_password("password123"));
+        assert!(!room.verify_password("wrongpassword"));
     }
 }
